@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { PageWrapper } from "./components/PageWrapper";
-import { Page, pages } from "./pages";
+import { PageWrapper } from "../components/PageWrapper";
+import { Page, pages } from "../pages";
 
 const App = () => {
   return (
