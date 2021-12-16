@@ -5,6 +5,11 @@ type RegradeRequestPayload = {
   commit: string;
 };
 
+type AccessCodeRequestPayload = {
+  csid: string;
+  eid: string;
+};
+
 type ResponseType<StatusType, ResponsePayload = null, ErrorPayload = null> = {
   status: StatusType;
   payload: ResponsePayload | ErrorPayload;
@@ -20,11 +25,24 @@ enum RegradeRequestStatus {
   ServerError,
 }
 
+enum AccessCodeRequestStatus {
+  Success,
+  NotRegistered,
+  MatchingError,
+  ServerError,
+}
+
 type RegradeRequestResponse = ResponseType<RegradeRequestStatus>;
+type AccessCodeRequestResponse = ResponseType<AccessCodeRequestStatus>;
 
 type PostRegradeRequest = RequestType<
   RegradeRequestPayload,
   RegradeRequestResponse
+>;
+
+type PostAccessCodeRequest = RequestType<
+  AccessCodeRequestPayload,
+  AccessCodeRequestResponse
 >;
 
 export type {
@@ -33,6 +51,9 @@ export type {
   RequestType,
   PostRegradeRequest,
   RegradeRequestResponse,
+  AccessCodeRequestResponse,
+  PostAccessCodeRequest,
+  AccessCodeRequestPayload,
 };
 
-export { RegradeRequestStatus };
+export { RegradeRequestStatus, AccessCodeRequestStatus };
