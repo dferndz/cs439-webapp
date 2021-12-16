@@ -4,6 +4,7 @@ import { Grid, Card, Container } from "@mui/material";
 
 import { Banner } from "../components/Banner";
 import { RegradesCard } from "../components/RegradesCard";
+import { EnrollCard } from "../components/EnrollCard";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,9 @@ const HomePage = () => {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <RegradesCard />
+        </Grid>
+        <Grid item xs={12} sm={6} md={8}>
+          <EnrollCard />
         </Grid>
       </Grid>
     </Container>
