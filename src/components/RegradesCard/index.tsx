@@ -99,7 +99,7 @@ const RegradesCard = observer(() => {
         )}
         {store.view === View.SuccessView && (
           <React.Fragment>
-            Request successfully sent.
+            Request successfully sent. You will receive a confirmation email.
             <Box pt={2}>
               <Button
                 onClick={store.handleReset}

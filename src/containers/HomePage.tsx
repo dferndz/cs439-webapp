@@ -1,10 +1,12 @@
 import React from "react";
-import { styled } from "@mui/material/styles";
-import { Grid, Card, Container } from "@mui/material";
+import { Grid, Container, Box } from "@mui/material";
 
 import { Banner } from "../components/Banner";
 import { RegradesCard } from "../components/RegradesCard";
 import { EnrollCard } from "../components/EnrollCard";
+import { ResourcesCard } from "../components/ResourcesCard";
+import { ProjectsCard } from "../components/ProjectsCard";
+import { ActiveProject } from "../components/ActiveProject";
 
 const HomePage = () => {
   return (
@@ -15,9 +17,20 @@ const HomePage = () => {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <RegradesCard />
+          <Box pt={2}>
+            <ActiveProject />
+          </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={8}>
-          <EnrollCard />
+          <Box>
+            <EnrollCard />
+          </Box>
+          <Box pt={4}>
+            <ResourcesCard />
+          </Box>
+          <Box pt={4}>
+            <ProjectsCard />
+          </Box>
         </Grid>
       </Grid>
     </Container>

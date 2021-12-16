@@ -22,10 +22,15 @@ class ProjectStore {
   initFetch = () => {
     this.loading = true;
   };
+
   resolveFetch = (results: Project[]) => {
     this.projects = results;
     this.loading = false;
   };
+
+  get activeProjects() {
+    return this.projects.filter((project: Project) => project.active);
+  }
 }
 
 export { ProjectStore };

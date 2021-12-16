@@ -23,6 +23,15 @@ const PageWrapper = ({ children }: PageWrapperProps) => {
           </Container>
         </AppBar>
         <Container>{children}</Container>
+        <AppBar position="static" color="secondary">
+          <Container maxWidth="md">
+            <Toolbar>
+              <Typography variant="body1" color="inherit">
+                © {new Date().getFullYear()} CS 439 TAs
+              </Typography>
+            </Toolbar>
+          </Container>
+        </AppBar>
       </ThemeProvider>
     </storesContext.Provider>
   );

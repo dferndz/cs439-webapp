@@ -16,9 +16,9 @@ const EnrollCard = observer(() => {
 
   return (
     <Card>
-      <CardHeader title="Link your CSID" />
+      <CardHeader title="Get an access code" />
       <CardContent>
-        First time around? Link your CSID and UT eID.
+        First time around? Get a personal code to submit regrade requests.
         <Box pt={2}>
           <Grid container spacing={2}>
             <Grid item xs={6} md={5}>
@@ -45,11 +45,12 @@ const EnrollCard = observer(() => {
                 color="secondary"
                 variant="contained"
               >
-                Link
+                Submit
               </Button>
             </Grid>
             <Grid item xs={12}>
-              You will receive a verification email in your CS email.
+              You will receive a verification email with a personal code in your
+              CS email.
             </Grid>
           </Grid>
         </Box>
