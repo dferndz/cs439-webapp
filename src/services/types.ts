@@ -22,6 +22,7 @@ type RequestType<PayloadType, ResponseType> = (
 enum RegradeRequestStatus {
   Success,
   AuthError,
+  DuplicateError,
   ServerError,
 }
 

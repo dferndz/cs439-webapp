@@ -115,9 +115,12 @@ const RegradesCard = observer(() => {
 
         {store.view === View.ErrorView && (
           <React.Fragment>
-            {store.status === RegradeRequestStatus.AuthError
-              ? "Your CSID or personal code are incorrect."
-              : "Something went wrong"}
+            {store.status === RegradeRequestStatus.AuthError &&
+              "Your CSID or personal code are incorrect."}
+            {store.status === RegradeRequestStatus.DuplicateError &&
+              "You already submitted a request for this commit."}
+            {store.status === RegradeRequestStatus.ServerError &&
+              "Something went wrong. Please contact a TA."}
             <Box pt={2}>
               <Button
                 onClick={store.handleReset}
