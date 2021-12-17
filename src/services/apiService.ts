@@ -17,6 +17,7 @@ const makeEndpoint = (path: string) => `${BASE_URL}${path}`;
 const endpoints = {
   projects: makeEndpoint("api/projects/"),
   regrades: makeEndpoint("api/regrades/"),
+  code: makeEndpoint("api/auth/request-code/"),
 };
 
 class ApiService {
@@ -62,14 +63,40 @@ class ApiService {
   postRequestAccessCode: PostAccessCodeRequest = async (
     payload: AccessCodeRequestPayload
   ) => {
-    console.log("Send access code request");
-    console.log(payload);
+    const res = await fetch(endpoints.code, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    }).then((res) => {
+      if (res.status === 200) {
+        return Promise.resolve({
+          status: AccessCodeRequestStatus.Success,
+          payload: null,
+        });
+      }
 
-    // TODO: call backend api
-    return {
-      status: AccessCodeRequestStatus.Success,
-      payload: null,
-    };
+      return res.json().then((data) => {
+        if (data.csid || (data.detail && data.detail === "invalid_eid")) {
+          return Promise.resolve({
+            status: AccessCodeRequestStatus.MatchingError,
+            payload: null,
+          });
+        } else if (data.detail && data.detail === "not_registered") {
+          return Promise.resolve({
+            status: AccessCodeRequestStatus.NotRegistered,
+            payload: null,
+          });
+        }
+        return Promise.resolve({
+          status: AccessCodeRequestStatus.ServerError,
+          payload: null,
+        });
+      });
+    });
+
+    return res;
   };
 
   getProjects: GetProjectsRequest = async (payload: undefined | null) => {
