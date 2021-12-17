@@ -67,7 +67,7 @@ const RegradesCard = observer(() => {
                   ) : (
                     store.projects &&
                     store.projects.map((project: Project, index: number) => (
-                      <MenuItem key={index} value={project.name}>
+                      <MenuItem key={index} value={project.id}>
                         {project.name}
                       </MenuItem>
                     ))

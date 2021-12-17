@@ -5,6 +5,14 @@ type RegradeRequestPayload = {
   commit: string;
 };
 
+type Project = {
+  id: string;
+  name: string;
+  description?: string;
+  info_site_name?: string;
+  active?: boolean;
+};
+
 type AccessCodeRequestPayload = {
   csid: string;
   eid: string;
@@ -18,6 +26,11 @@ type ResponseType<StatusType, ResponsePayload = null, ErrorPayload = null> = {
 type RequestType<PayloadType, ResponseType> = (
   payload: PayloadType
 ) => Promise<ResponseType>;
+
+enum GenericStatus {
+  Success,
+  Error,
+}
 
 enum RegradeRequestStatus {
   Success,
@@ -35,6 +48,7 @@ enum AccessCodeRequestStatus {
 
 type RegradeRequestResponse = ResponseType<RegradeRequestStatus>;
 type AccessCodeRequestResponse = ResponseType<AccessCodeRequestStatus>;
+type GetProjectsResponse = ResponseType<GenericStatus, Project[]>;
 
 type PostRegradeRequest = RequestType<
   RegradeRequestPayload,
@@ -46,6 +60,8 @@ type PostAccessCodeRequest = RequestType<
   AccessCodeRequestResponse
 >;
 
+type GetProjectsRequest = RequestType<undefined | null, GetProjectsResponse>;
+
 export type {
   RegradeRequestPayload,
   ResponseType,
@@ -55,6 +71,9 @@ export type {
   AccessCodeRequestResponse,
   PostAccessCodeRequest,
   AccessCodeRequestPayload,
+  GetProjectsRequest,
+  GetProjectsResponse,
+  Project,
 };
 
-export { RegradeRequestStatus, AccessCodeRequestStatus };
+export { RegradeRequestStatus, AccessCodeRequestStatus, GenericStatus };

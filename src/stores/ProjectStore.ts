@@ -1,5 +1,6 @@
 import { makeAutoObservable, action } from "mobx";
-import { Project } from "../data/projects";
+import { apiService } from "../services/apiService";
+import { GenericStatus, Project } from "../services/types";
 
 class ProjectStore {
   projects: Project[] = [];
@@ -12,9 +13,13 @@ class ProjectStore {
 
   fetchProjects = () => {
     this.initFetch();
-    import("../data/projects").then(
-      action((module) => {
-        this.resolveFetch(module.projects);
+    apiService.getProjects(null).then(
+      action((res) => {
+        if (res.status === GenericStatus.Success && res.payload !== null) {
+          this.resolveFetch(res.payload);
+        } else {
+          this.resolveFetch([]);
+        }
       })
     );
   };
