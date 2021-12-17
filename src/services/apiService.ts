@@ -9,9 +9,14 @@ import {
   GenericStatus,
 } from "./types";
 
+const BASE_URL =
+  process.env.NODE_ENV === "production" ? process.env.REACT_APP_API_URL : "/";
+
+const makeEndpoint = (path: string) => `${BASE_URL}${path}`;
+
 const endpoints = {
-  projects: "/api/projects/",
-  regrades: "/api/regrades/",
+  projects: makeEndpoint("api/projects/"),
+  regrades: makeEndpoint("api/regrades/"),
 };
 
 class ApiService {
