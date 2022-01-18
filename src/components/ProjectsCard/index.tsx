@@ -57,7 +57,7 @@ const ProjectsCard = observer(() => {
 
   return (
     <React.Fragment>
-      <CardHeader title="Projects" />
+      <CardHeader title="All Projects" />
       <Box pb={4}>
         <div style={{ height: 300, width: "100%" }}>
           <DataGrid rows={rows} columns={columns} />

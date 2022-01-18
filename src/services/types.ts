@@ -13,6 +13,13 @@ type Project = {
   active?: boolean;
 };
 
+type Resource = {
+  title: string;
+  image_src: string;
+  description: string;
+  url: string;
+};
+
 type AccessCodeRequestPayload = {
   csid: string;
   eid: string;
@@ -49,6 +56,7 @@ enum AccessCodeRequestStatus {
 type RegradeRequestResponse = ResponseType<RegradeRequestStatus>;
 type AccessCodeRequestResponse = ResponseType<AccessCodeRequestStatus>;
 type GetProjectsResponse = ResponseType<GenericStatus, Project[]>;
+type GetResourcesResponse = ResponseType<GenericStatus, Resource[]>;
 
 type PostRegradeRequest = RequestType<
   RegradeRequestPayload,
@@ -61,6 +69,7 @@ type PostAccessCodeRequest = RequestType<
 >;
 
 type GetProjectsRequest = RequestType<undefined | null, GetProjectsResponse>;
+type GetResourcesRequest = RequestType<undefined | null, GetResourcesResponse>;
 
 export type {
   RegradeRequestPayload,
@@ -73,7 +82,10 @@ export type {
   AccessCodeRequestPayload,
   GetProjectsRequest,
   GetProjectsResponse,
+  GetResourcesResponse,
+  GetResourcesRequest,
   Project,
+  Resource,
 };
 
 export { RegradeRequestStatus, AccessCodeRequestStatus, GenericStatus };

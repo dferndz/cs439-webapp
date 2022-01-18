@@ -7,6 +7,7 @@ import {
   AccessCodeRequestStatus,
   GetProjectsRequest,
   GenericStatus,
+  GetResourcesRequest,
 } from "./types";
 
 const BASE_URL =
@@ -16,6 +17,7 @@ const makeEndpoint = (path: string) => `${BASE_URL}${path}`;
 
 const endpoints = {
   projects: makeEndpoint("api/projects/"),
+  resources: makeEndpoint("api/resources/"),
   regrades: makeEndpoint("api/regrades/"),
   code: makeEndpoint("api/auth/request-code/"),
 };
@@ -101,6 +103,28 @@ class ApiService {
 
   getProjects: GetProjectsRequest = async (payload: undefined | null) => {
     const data = await fetch(endpoints.projects).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.resolve(null);
+      }
+    });
+
+    if (data === null) {
+      return {
+        status: GenericStatus.Error,
+        payload: null,
+      };
+    }
+
+    return {
+      status: GenericStatus.Success,
+      payload: data,
+    };
+  };
+
+  getResources: GetResourcesRequest = async (payload: undefined | null) => {
+    const data = await fetch(endpoints.resources).then((res) => {
       if (res.ok) {
         return res.json();
       } else {

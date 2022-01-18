@@ -7,6 +7,7 @@ import { EnrollCard } from "../components/EnrollCard";
 import { ResourcesCard } from "../components/ResourcesCard";
 import { ProjectsCard } from "../components/ProjectsCard";
 import { ActiveProject } from "../components/ActiveProject";
+import { RegradeStatusCard } from "../components/RegradeStatus";
 
 const HomePage = () => {
   return (
@@ -20,6 +21,9 @@ const HomePage = () => {
           <Box pt={2}>
             <ActiveProject />
           </Box>
+          <Box pt={2}>
+            <ProjectsCard />
+          </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={8}>
           <Box>
@@ -29,7 +33,7 @@ const HomePage = () => {
             <ResourcesCard />
           </Box>
           <Box pt={4}>
-            <ProjectsCard />
+            <RegradeStatusCard />
           </Box>
         </Grid>
       </Grid>
