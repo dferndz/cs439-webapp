@@ -6,7 +6,7 @@ import { Page, pages } from "../pages";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <PageWrapper>
         <Routes>
           {pages.map((page: Page, index: number) => (
